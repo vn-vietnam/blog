@@ -2,7 +2,7 @@
 
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { pluginConfig } from "@/config/blog.config";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "lucide-react";
@@ -12,7 +12,7 @@ import Time from "./Time";
 import Link from "next/link";
 import Pagination from "@/plugins/pagination";
 
-function BlogContent({ posts }: any) {
+function BlogContentInner({ posts }: any) {
 	posts = posts.filter((post: any) => dayjs(post.date).isBefore(dayjs()));
 
 	const searchParams = useSearchParams();
@@ -24,16 +24,16 @@ function BlogContent({ posts }: any) {
 
 	const allPostCount = posts.length || 0;
 
-	  const page: any = Number(searchParams.get('page')) || 1
-	  const {engine, pageSize} = pluginConfig.pagination
-	  if (engine) {
-		  if (engine === 'default') {
-			  posts = posts.slice((page - 1) * pageSize, page * pageSize)
-		  }
-		  if (engine === 'loadMore') {
-			  posts = posts.slice(0, page * pageSize)
-		  }
-	  }
+	const page: any = Number(searchParams.get('page')) || 1
+	const {engine, pageSize} = pluginConfig.pagination
+	if (engine) {
+		if (engine === 'default') {
+			posts = posts.slice((page - 1) * pageSize, page * pageSize)
+		}
+		if (engine === 'loadMore') {
+			posts = posts.slice(0, page * pageSize)
+		}
+	}
 
 	const generateHref = (page: number) => {
 		if (currentTag) {
@@ -103,6 +103,14 @@ function BlogContent({ posts }: any) {
 			))}
 			<Pagination allCount={allPostCount} generateHref={generateHref}/>
 		</>
+	);
+}
+
+function BlogContent({ posts }: any) {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<BlogContentInner posts={posts} />
+		</Suspense>
 	);
 }
 

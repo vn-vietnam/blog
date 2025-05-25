@@ -1,10 +1,10 @@
 "use client";
 import { blogConfig } from "@/config/blog.config";
 import { useSearchParams, usePathname } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { Separator } from "./ui/separator";
 
-function Title() {
+function TitleInner() {
 	const pathname = usePathname();
 	const nameArr = pathname.split("/");
 	const name = nameArr[nameArr.length - 1];
@@ -38,6 +38,14 @@ function Title() {
 				<Separator />
 			</div>
 		)
+	);
+}
+
+function Title() {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<TitleInner />
+		</Suspense>
 	);
 }
 
