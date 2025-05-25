@@ -3,7 +3,7 @@
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
 import React from "react";
-import { blogConfig, pluginConfig } from "@/config/blog.config";
+import { pluginConfig } from "@/config/blog.config";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "lucide-react";
 import { Button } from "./ui/button";

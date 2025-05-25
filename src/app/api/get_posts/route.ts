@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server";
 import {getPostsData} from "@/app/server-utils";
 
-export function GET(req: any, res: any) {
+export function GET() {
     const posts = getPostsData()
     return NextResponse.json({
         code: 200,

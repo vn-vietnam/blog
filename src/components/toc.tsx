@@ -1,6 +1,4 @@
 "use client";
-
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -12,6 +10,7 @@ const Toc = ({ toc }: any) => {
 		5: "ml-12",
 		6: "ml-16",
 	};
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [current, setCurrent] = useState<string>("");
 
 	const handleClick = (href: string) => {

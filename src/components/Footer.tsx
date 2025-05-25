@@ -1,7 +1,6 @@
 import { blogConfig, pluginConfig } from "@/config/blog.config";
 import React from "react";
 import { Separator } from "./ui/separator";
-import Link from "next/link";
 import { Label } from "./ui/label";
 import SocialList from "./SocialList";
 import Newsletter from "@/plugins/newsletter";
@@ -9,7 +8,7 @@ import Newsletter from "@/plugins/newsletter";
 function Footer() {
 	const {
 		author,
-		footer: { isShow, isShowPoweredBy },
+		footer: { isShow },
 	} = blogConfig;
 
 	const { title, description, position } = pluginConfig.newsletter;

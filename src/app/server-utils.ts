@@ -8,7 +8,7 @@ import {blogConfig} from "@/config/blog.config";
 export const getPostsData = () => {
     const postsDirectory = path.join(process.cwd(), 'src/posts')
     const fileNames = fs.readdirSync(postsDirectory)
-    const posts: any = fileNames.map((fileName: any) => {
+    const posts = fileNames.map((fileName) => {
 
         const id = fileName.replace(/\.mdx?$/, '')
         const fullPath = path.join(postsDirectory, fileName)
@@ -20,7 +20,7 @@ export const getPostsData = () => {
             content: '\r\n' + `# ${matterResult?.data.title}` + matterResult.content,
             stats: readingTime(matterResult.content)
         }
-    }).filter((post: any) => !post.draft)
+    }).filter((post : any) => !post.draft)
 
     const {pinnedPosts, commonPosts} = posts.reduce((acc: any, post: any) => {
         if (post.pinned) {
