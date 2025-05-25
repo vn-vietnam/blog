@@ -1,0 +1,44 @@
+"use client";
+import { blogConfig } from "@/config/blog.config";
+import { useSearchParams, usePathname } from "next/navigation";
+import React from "react";
+import { Separator } from "./ui/separator";
+
+function Title() {
+	const pathname = usePathname();
+	const nameArr = pathname.split("/");
+	const name = nameArr[nameArr.length - 1];
+	const data = name ? blogConfig[name] : blogConfig.home;
+	const searchParams = useSearchParams();
+	const tag = searchParams.get("tag");
+	if (name === "blog" || tag) {
+		return (
+			<div className={"container pt-8"}>
+				<h1>{tag ? tag : data?.title}</h1>
+				{data?.description && (
+					<p className={"text-zinc-600"}>
+						{tag
+							? `This is a list of all posts with the tag #${tag}.`
+							: data?.description}
+					</p>
+				)}
+				<p>{/* <Newsletter/> */}</p>
+				<Separator />
+			</div>
+		);
+	}
+  
+	return (
+		data && (
+			<div className={"container pt-8"}>
+				<h1>{data?.title}</h1>
+				{data?.description && (
+					<p className={"text-zinc-600"}>{data?.description}</p>
+				)}
+				<Separator />
+			</div>
+		)
+	);
+}
+
+export default Title;
