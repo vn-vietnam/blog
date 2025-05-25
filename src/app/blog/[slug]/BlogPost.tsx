@@ -40,7 +40,7 @@ export default function BlogPost({ post }: BlogPostProps) {
     <div className={"w-full flex justify-center"}>
       <div className={'w-full max-w-screen-lg relative'}>
         {/*mobile*/}
-        <div className={'block 2xl:hidden sticky top-20 p-2 bg-white/80 backdrop-blur-md z-10 w-full shadow-sm'}>
+        <div className={'block 2xl:hidden sticky top-20 p-2  backdrop-blur-md z-10 w-full shadow-sm'}>
           <div className={'flex justify-between'}>
             <div className={'space-x-4'}>
               <SideNav/>
