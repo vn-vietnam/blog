@@ -22,6 +22,7 @@ const Toc = ({ toc }: any) => {
 			behavior: "smooth",
 		});
 	};
+
 	return (
 		<div
 			className={

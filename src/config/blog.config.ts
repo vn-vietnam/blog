@@ -51,96 +51,47 @@ const blogConfig: any = {
 
     // home page config
     home: {
-        title: "Welcome to Kien Nguyen Blog",
-        description: "Using Next.js 15, Tailwind CSS, and TypeScript to build a blog",
+        title: "home.title",
+        description: "home.description",
     },
 
     // blog page config
     blog: {
-        title: 'My Blogs',
-        description: 'Blog Chanel',
+        title: 'blog.title',
+        description: 'blog.description',
         pinnedSort: "desc", // "asc" | "desc"
     },
 
     // tags page config
     tags: {
-        title: 'Tags',
-        description: 'All of my tags',
+        title: 'tags.title',
+        description: 'tags.description',
     },
 
     // project page config
     project: {
-        title: "Projects",
-        description: "What I've done will be updated here",
-
-        // status color and text
-        getStatus: (status: string) => {
-
-            // dev: Under development or planning.
-            // active: Currently focused on this project.
-            // filed: Not upgrading will only fix bugs.
-            // offline: Going offline soon.
-            // none: Keep running.
-            if (!status) return {}
-
-            switch (status) {
-                case "active":
-                    return {
-                        variant: "default",
-                        text: "ACTIVE",
-                    }
-                case "dev":
-                    return {
-                        variant: "secondary",
-                        text: "DEV",
-                    }
-                case "filed":
-                    return {
-                        variant: "outline",
-                        text: "FILED",
-                    }
-                case "offline":
-                    return {
-                        variant: "destructive",
-                        text: "OFFLINE",
-                    }
-            }
-        },
-
+        title: "project.title",
+        description: "project.description",
         projects: [
             {
-                name: "Project 1",
-                description: "Project 1 Description",
+                name: "list.1.name",
+                description: "list.1.description",
                 href: "",
                 github: "",
-                status: "active",
+                status: "list.1.status",
             },
             {
-                name: "Project 2",
-                description: "Project 2 Description",
-                status: "dev",
+                name: "list.2.name",
+                description: "list.2.description",
+                status: "list.2.status",
             },
             {
-                name: "Project 3",
-                description: "Project 3 Description",
-                status: "dev",
+                name: "list.3.name",
+                description: "list.3.description",
+                status: "list.3.status",
                 href: "",
                 github: "",
-            },
-            {
-                name: "Project 4",
-                description: "Project 4 Description",
-                href: "",
-                github: "",
-                status: "filed",
-            },
-            {
-                name: "Project 5",
-                description: "Project 5 Description",
-                href: "",
-                github: "",
-                status: "offline",
-            },
+            }
         ],
     },
 

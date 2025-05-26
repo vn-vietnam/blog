@@ -22,7 +22,7 @@ const Tags = async ({ params }: Props) => {
     const {  locale } = await params;
     return (
         <PageContainer>
-            <div className={'flex'}>
+            <div className={'flex flex-wrap gap-2'}>
                 {Object.keys(tags).map((tag: string) => (
                     <Link href={`/${locale}/blog?tag=${tag}`} key={tag}>
                         <Button className={'text-lg px-4 underline-offset-8'} size={'lg'} variant={'link'} key={tag}>

@@ -29,6 +29,7 @@ interface Post {
   stats: {
     words: number;
     text: string;
+    minutes: number;
   };
   mdxSource: MDXRemoteSerializeResult;
   toc: {
@@ -91,12 +92,16 @@ async function getPost(slug: string, locale: string): Promise<Post | null> {
       }
     }
   });
-
   return {
     ...post,
     mdxSource,
     toc: {
-      items: (file.data.toc as { items: TocItem[] }).items || []
+      items: file.data.toc as TocItem[]
+    },
+    stats: {
+      words: post.stats.words,
+      text: post.stats.text,
+      minutes: post.stats.words / 200 // Assuming average reading speed of 200 words per minute
     }
   }
 }

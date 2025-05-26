@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Time from "@/components/Time";
 import { CommandLoading } from "cmdk";
+import { usePathname } from "next/navigation";
 
 const Cmdk = ({
 	open,
@@ -20,14 +21,16 @@ const Cmdk = ({
 }) => {
 	const [loading, setLoading] = useState(true);
 	const [posts, setPosts] = useState([]);
+	const pathname = usePathname();
+	const locale = pathname.split("/")[1] || "en"; 
 	useEffect(() => {
-		fetch("/api/get_posts")
+		fetch(`/${locale}/api/get_posts?locale=${locale}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setPosts(data.data.slice(0, 10));
 				setLoading(false);
 			});
-	}, []);
+	}, [locale]);
 	return (
 		<CommandDialog open={open} onOpenChange={() => setOpen(!open)}>
 			<CommandInput placeholder="Type a command or search..." />
@@ -36,7 +39,7 @@ const Cmdk = ({
 					<div className={"space-y-4"}>
 						{posts.map((post: any) => (
 							<Link
-								href={`/blog/${post?.id}`}
+								href={`/${locale}/blog/${post?.id}`}
 								key={post?.id}
 								onClick={() => setOpen(false)}
 							>

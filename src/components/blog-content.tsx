@@ -12,27 +12,44 @@ import Time from "./Time";
 import Link from "next/link";
 import Pagination from "@/plugins/pagination";
 
-function BlogContentInner({ posts }: any) {
-	posts = posts.filter((post: any) => dayjs(post.date).isBefore(dayjs()));
+interface Post {
+	id: string;
+	title: string;
+	date: string;
+	summary?: string;
+	draft?: boolean;
+	pinned?: number;
+	tags: string[];
+	locale: string;
+}
+
+function BlogContentInner({ posts }: { posts: Post[] }) {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	
+	const locale = pathname.split("/")[1]; // Get locale from path
+
+	// Filter posts by current date and locale
+	posts = posts.filter((post) => 
+		dayjs(post.date).isBefore(dayjs()) && 
+		post.locale === locale
+	);
 
 	const currentTag = searchParams.get("tag");
 	if (currentTag) {
-		posts = [...posts.filter((post: any) => post.tags.includes(currentTag))];
+		posts = posts.filter((post) => post.tags.includes(currentTag));
 	}
 
 	const allPostCount = posts.length || 0;
 
-	const page: any = Number(searchParams.get('page')) || 1
-	const {engine, pageSize} = pluginConfig.pagination
+	const page: number = Number(searchParams.get('page')) || 1;
+	const {engine, pageSize} = pluginConfig.pagination;
+	
 	if (engine) {
 		if (engine === 'default') {
-			posts = posts.slice((page - 1) * pageSize, page * pageSize)
+			posts = posts.slice((page - 1) * pageSize, page * pageSize);
 		}
 		if (engine === 'loadMore') {
-			posts = posts.slice(0, page * pageSize)
+			posts = posts.slice(0, page * pageSize);
 		}
 	}
 
@@ -43,19 +60,14 @@ function BlogContentInner({ posts }: any) {
 			return `blog?page=${page}`;
 		}
 	};
-	// const switchLocale = () => {
-	// 	const newLocale = currentLocale === 'en' ? 'vi' : 'en';
-	// 	const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
-	// 	router.push(newPath);
-	// };
 
 	return (
 		<>
-			{posts.map((post: any, index: number) => (
+			{posts.map((post, index) => (
 				<div className={"space-y-4"} key={index}>
 					<div className={"space-y-4"}>
 						<div className={"block md:hidden"}>
-							<Time date={post?.date} />
+							<Time date={post.date} />
 						</div>
 						<CardTitle
 							className={"not-prose space-x-4 flex justify-start items-center"}
@@ -73,17 +85,16 @@ function BlogContentInner({ posts }: any) {
 								<Time date={post.date} />
 							</div>
 							<div className={"space-x-2 flex flex-wrap"}>
-								{post?.tags?.map((tag: string, index: number) => (
+								{post.tags?.map((tag, index) => (
 									<Link
 										key={index}
 										href={`${pathname}?tag=${tag}`}
-										className="no-underline "
+										className="no-underline"
 									>
 										<div
-											key={index}
 											className={
-												currentTag == tag
-													? "bg-secondary text-sm border p-1 bg-red-500 text-white"
+												currentTag === tag
+													? "bg-secondary text-sm border p-1"
 													: "border p-1 text-sm"
 											}
 										>
@@ -112,7 +123,7 @@ function BlogContentInner({ posts }: any) {
 	);
 }
 
-function BlogContent({ posts }: any) {
+function BlogContent({ posts }: { posts: Post[] }) {
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			<BlogContentInner posts={posts} />

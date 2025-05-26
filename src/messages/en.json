@@ -1,6 +1,8 @@
 {
 	"Home": {
-		"title": "My Blog"
+		"title": "Hello there",
+		"description": "Welcome to my template Blog built with Next.js 15, Tailwind CSS, Shadcn UI and Next-intl, MDX and TypeScript",
+		"button": "Get Started"
 	},
 	"Header": {
 		"blog": "Blog",
@@ -13,5 +15,48 @@
 		"below subscribe": "Stay updated on new releases and features, guides, and case studies.",
 		"subscribe button title": "Subscribe via email",
 		"subscribe btn": "Subscribe"
+	},
+	"Blog": {
+		"title": "Blog",
+		"description": "This is my blog"
+	},
+	"Tags": {
+		"title": "Tags",
+		"description": "All of my tags"
+	},
+	"Projects": {
+		"title": "Projects",
+		"description": "All of my projects",
+		"list": {
+			"1": {
+				"name": "Project 1",
+				"description": "Project 1 description",
+				"status": "active"
+			},
+			"2": {
+				"name": "Project 2",
+				"description": "Project 2 description",
+				"status": "dev"
+			},
+			"3": {
+				"name": "Project 3",
+				"description": "Project 3 description",
+				"status": "offline"
+			}
+		}
+	},
+	"Title": {
+		"blog": {
+			"title": "My Blogs",
+			"description": "Blog Channel"
+		},
+		"tags": {
+			"title": "Tags",
+			"description": "All of my tags"
+		},
+		"project": {
+			"title": "Projects",
+			"description": "All of my projects"
+		}
 	}
 }

@@ -28,7 +28,20 @@ interface MatterData {
     tags: string[];
 }
 
+const VALID_LOCALES = ['en', 'vi'] as const;
+type ValidLocale = typeof VALID_LOCALES[number];
+
+function isValidLocale(locale: string): locale is ValidLocale {
+    return VALID_LOCALES.includes(locale as ValidLocale);
+}
+
 export const getPostsData = (locale: string = 'en'): Post[] => {
+    // Validate locale first
+    if (!isValidLocale(locale)) {
+        console.warn(`Invalid locale: ${locale}, falling back to default locale`);
+        return getPostsData('en');
+    }
+
     const postsDirectory = path.join(process.cwd(), 'src/posts', locale)
     
     // Check if directory exists, if not, fallback to default locale
@@ -80,7 +93,13 @@ export const getPostsData = (locale: string = 'en'): Post[] => {
     ]
 }
 
-export const getTagsData = (locale: string = 'vi'): Record<string, number> => {
+export const getTagsData = (locale: string = 'en'): Record<string, number> => {
+    // Validate locale first
+    if (!isValidLocale(locale)) {
+        console.warn(`Invalid locale: ${locale}, falling back to default locale`);
+        return getTagsData('en');
+    }
+    
     return getPostsData(locale).reduce((acc: Record<string, number>, post: Post) => {
         post.tags.forEach((tag: string) => {
             if (!acc[tag]) {

@@ -1,44 +1,24 @@
 "use client";
+
 import { blogConfig } from "@/config/blog.config";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+
 import React, { Suspense } from "react";
-import { Separator } from "./ui/separator";
 
 function TitleInner() {
-	const pathname = usePathname();
-	const nameArr = pathname.split("/");
+	const t = useTranslations("Title");
+	const router = usePathname();
+	const nameArr = router.split("/");
 	const name = nameArr[nameArr.length - 1];
-	const data = name ? blogConfig[name] : blogConfig.home;
-	const searchParams = useSearchParams();
-	const tag = searchParams.get("tag");
-	if (name === "blog" || tag) {
+	const data = name ? blogConfig[name] : blogConfig.title;
+	if (name === "blog" || name === "tags" || name === "project") {
 		return (
 			<div className={"container pt-8"}>
-				<h1>{tag ? tag : data?.title}</h1>
-				{data?.description && (
-					<p className={"text-zinc-600"}>
-						{tag
-							? `This is a list of all posts with the tag #${tag}.`
-							: data?.description}
-					</p>
-				)}
-				<p>{/* <Newsletter/> */}</p>
-				<Separator />
+				<h1 className="text-3xl font-bold mb-4">{t(data?.title)}</h1>
 			</div>
 		);
 	}
-  
-	return (
-		data && (
-			<div className={"container pt-8"}>
-				<h1>{data?.title}</h1>
-				{data?.description && (
-					<p className={"text-zinc-600"}>{data?.description}</p>
-				)}
-				<Separator />
-			</div>
-		)
-	);
 }
 
 function Title() {

@@ -1,6 +1,8 @@
 {
 	"Home": {
-		"title": "Blog của tôi"
+		"title": "Xin Chào",
+		"description": "Chào mừng đến với template Blog của tôi được xây dựng với Next.js 15, Tailwind CSS, Shadcn UI và Next-intl, MDX và TypeScript",
+		"button": "Bắt đầu"
 	},
 	"Header": {
 		"blog": "Nhật kí",
@@ -13,5 +15,48 @@
 		"below subscribe": "Cập nhật các bản phát hành và tính năng mới, hướng dẫn và nghiên cứu điển hình.",
 		"subscribe button title": "Đăng ký qua email",
 		"subscribe btn": "Đăng ký"
+	},
+	"Blog": {
+		"title": "Nhật kí",
+		"description": "Đây là nhật kí của tôi"
+	},
+	"Tags": {
+		"title": "Thẻ",
+		"description": "Tất cả các thẻ của tôi"
+	},
+	"Projects": {
+		"title": "Dự án",
+		"description": "Tất cả các dự án của tôi",
+		"list": {
+			"1": {
+				"name": "Dự án 1",
+				"description": "Mô tả dự án 1",
+				"status": "Hoạt động"
+			},
+			"2": {
+				"name": "Dự án 2",
+				"description": "Mô tả dự án 2",
+				"status": "Đang phát triển"
+			},
+			"3": {
+				"name": "Dự án 3",
+				"description": "Mô tả dự án 3",
+				"status": "Dừng hoạt động"
+			}
+		}
+	},
+	"Title": {
+		"blog": {
+			"title": "Chào mừng đến với trang Blog của tôi",
+			"description": "Sử dụng Next.js 15, Tailwind CSS và TypeScript để xây dựng blog"
+		},
+		"tags": {
+			"title": "Thẻ",
+			"description": "Tất cả các thẻ của tôi"
+		},
+		"project": {
+			"title": "Dự án",
+			"description": "Tất cả các dự án của tôi"
+		}
 	}
 }
