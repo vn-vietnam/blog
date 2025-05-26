@@ -1,7 +1,7 @@
 "use client";
 
 import dayjs from "dayjs";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { pluginConfig } from "@/config/blog.config";
 import { ArrowRight } from "lucide-react";
@@ -14,8 +14,9 @@ import Pagination from "@/plugins/pagination";
 
 function BlogContentInner({ posts }: any) {
 	posts = posts.filter((post: any) => dayjs(post.date).isBefore(dayjs()));
-
+	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	
 
 	const currentTag = searchParams.get("tag");
 	if (currentTag) {
@@ -37,11 +38,16 @@ function BlogContentInner({ posts }: any) {
 
 	const generateHref = (page: number) => {
 		if (currentTag) {
-			return `/blog?tag=${currentTag}&page=${page}`;
+			return `blog?tag=${currentTag}&page=${page}`;
 		} else {
-			return `/blog?page=${page}`;
+			return `blog?page=${page}`;
 		}
 	};
+	// const switchLocale = () => {
+	// 	const newLocale = currentLocale === 'en' ? 'vi' : 'en';
+	// 	const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+	// 	router.push(newPath);
+	// };
 
 	return (
 		<>
@@ -56,7 +62,7 @@ function BlogContentInner({ posts }: any) {
 						>
 							<Link
 								className={"hover:underline hover:underline-offset-8"}
-								href={`/blog/${post.id}`}
+								href={`${pathname}/${post.id}`}
 							>
 								{post.title}
 							</Link>
@@ -70,14 +76,14 @@ function BlogContentInner({ posts }: any) {
 								{post?.tags?.map((tag: string, index: number) => (
 									<Link
 										key={index}
-										href={`/blog?tag=${tag}`}
-										className="no-underline"
+										href={`${pathname}?tag=${tag}`}
+										className="no-underline "
 									>
 										<div
 											key={index}
 											className={
 												currentTag == tag
-													? "bg-secondary text-sm"
+													? "bg-secondary text-sm border p-1 bg-red-500 text-white"
 													: "border p-1 text-sm"
 											}
 										>
@@ -93,7 +99,7 @@ function BlogContentInner({ posts }: any) {
 					</CardDescription>
 					<div className={"flex justify-end"}>
 						<Button asChild>
-							<Link href={`/blog/${post.id}`} className="no-underline">
+							<Link href={`${pathname}/${post.id}`} className="no-underline">
 								Read More
 								<ArrowRight size={16} className={"ml-2"} />
 							</Link>

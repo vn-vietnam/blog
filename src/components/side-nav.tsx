@@ -1,34 +1,20 @@
-'use client'
+"use client";
 
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import React from "react";
-import {useRouter} from "next/navigation";
-import {ArrowLeft, MessageSquareMore} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 
 const SideNav = () => {
-    const router = useRouter()
+	return (
+		<>
+			<Button size={"icon"} variant={"ghost"} asChild>
+				<Link href={`/blog`}>
+					<ArrowLeft size={20} />
+				</Link>
+			</Button>
+		</>
+	);
+};
 
-    const handleGoBack = () => router.back()
-
-    const handleGoComment = () => {
-        const element: any = document.getElementById("comment")
-        window.scrollTo({
-            top: element.offsetTop,
-            behavior: 'smooth'
-        })
-    }
-
-    return (
-        <>
-            <Button size={"icon"} variant={'ghost'} onClick={handleGoBack}>
-                <ArrowLeft size={20}/>
-            </Button>
-            <Button size={"icon"} variant={'ghost'} onClick={handleGoComment}>
-                <MessageSquareMore size={20}/>
-            </Button>
-        </>
-    );
-}
-
-
-export default SideNav
+export default SideNav;

@@ -1,6 +1,6 @@
-import { getPostsData } from '@/app/server-utils';
+import { getPostsData } from '@/app/[locale]/server-utils';
 import { notFound } from 'next/navigation';
-import BlogPost from '@/app/blog/[slug]/BlogPost';
+import BlogPost from '@/app/[locale]/blog/[slug]/BlogPost';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
@@ -21,10 +21,11 @@ interface TocItem {
 interface Post {
   id: string;
   title: string;
-  summary: string;
+  summary?: string;
   content: string;
   date: string;
   draft?: boolean;
+  locale: string;
   stats: {
     words: number;
     text: string;
@@ -36,18 +37,27 @@ interface Post {
 }
 
 export async function generateStaticParams() {
-  return getPostsData().map((post) => ({
-    slug: post.id
-  }))
+  const locales = ['en', 'vi'];
+  const params = [];
+  
+  for (const locale of locales) {
+    const posts = getPostsData(locale);
+    params.push(...posts.map((post) => ({
+      slug: post.id,
+      locale
+    })));
+  }
+  
+  return params;
 }
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPost(slug)
+  const { slug, locale } = await params;
+  const post = await getPost(slug, locale)
   if (!post) return notFound()
   return {
     title: post.title,
@@ -55,8 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-async function getPost(slug: string): Promise<Post | null> {
-  const post = getPostsData().find((post) => post.id === slug)
+async function getPost(slug: string, locale: string): Promise<Post | null> {
+  const post = getPostsData(locale).find((post) => post.id === slug)
   if (!post || post?.draft) return null
 
   // Generate TOC
@@ -85,14 +95,15 @@ async function getPost(slug: string): Promise<Post | null> {
   return {
     ...post,
     mdxSource,
-    toc: file.data.toc
+    toc: {
+      items: (file.data.toc as { items: TocItem[] }).items || []
+    }
   }
 }
 
 export default async function BlogPage({ params }: Props) {
-  const { slug } = await params;
-  const post = await getPost(slug)
+  const { slug, locale } = await params;
+  const post = await getPost(slug, locale)
   if (!post) notFound()
-  
   return <BlogPost post={post} />
 }

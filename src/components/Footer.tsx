@@ -4,6 +4,7 @@ import { Separator } from "./ui/separator";
 import { Label } from "./ui/label";
 import SocialList from "./SocialList";
 import Newsletter from "@/plugins/newsletter";
+import { useTranslations } from "next-intl";
 
 function Footer() {
 	const {
@@ -12,6 +13,7 @@ function Footer() {
 	} = blogConfig;
 
 	const { title, description, position } = pluginConfig.newsletter;
+	const t = useTranslations("Footer");
 	return (
 		isShow && (
 			<div>
@@ -29,11 +31,11 @@ function Footer() {
 								}
 							>
 								<Label className={"text-base"}>
-									{title && "Subscribe to the newsletter"}
+									{title && t("subscribe")}
 								</Label>
 								{description && (
 									<p className={"text-sm text-gray-500 text-center"}>
-										{description}
+										{t("below subscribe")}
 									</p>
 								)}
 							</div>

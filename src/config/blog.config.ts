@@ -25,15 +25,15 @@ const blogConfig: any = {
     // routes
     routes: [
         {
-            name: 'Blog',
+            name: 'blog',
             value: '/blog'
         },
         {
-            name: 'Tags',
+            name: 'tags',
             value: '/tags'
         },
         {
-            name: 'Projects',
+            name: 'projects',
             value: '/project'
         },
     ],

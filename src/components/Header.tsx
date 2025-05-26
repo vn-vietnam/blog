@@ -4,7 +4,7 @@ import { Moon } from "lucide-react";
 import { Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { SheetContent } from "./ui/sheet";
 import { SheetTrigger } from "./ui/sheet";
@@ -14,15 +14,31 @@ import { Menu } from "lucide-react";
 import { Github } from "lucide-react";
 import { Separator } from "./ui/separator";
 import SearchPlugin from "@/plugins/search";
+import { useTranslations } from "next-intl";
+
 function Header() {
 	const { routes, logo, githubRepo } = blogConfig;
 	const pathname = usePathname();
+	const router = useRouter();
+	const currentLocale = pathname.split('/')[1];
+
 	const active = routes.find(
-		(item: any) => item.value == "/" + pathname.split("/")[1]
+		(item: any) => item.value === "/" + pathname.split("/")[2]
 	)?.name;
 
 	const { theme, setTheme } = useTheme();
 	const [open, setOpen] = useState(false);
+
+	const switchLocale = () => {
+		const newLocale = currentLocale === 'en' ? 'vi' : 'en';
+		const segments = pathname.split('/');
+		segments[1] = newLocale;
+		const newPath = segments.join('/') + (window.location.search || '');
+		router.push(newPath);
+	};
+
+	const t = useTranslations("Header");
+
 	return (
 		<div
 			className={
@@ -31,19 +47,19 @@ function Header() {
 		>
 			<header className={"container flex justify-between py-4"}>
 				<div className={"flex justify-center items-center"}>
-					<Link className={"flex justify-center items-center mr-4"} href={"/"}>
+					<Link className={"flex justify-center items-center mr-4"} href={`/${currentLocale}`}>
 						{logo?.text && (
 							<div className={"ml-1 text-lg font-semibold"}>{logo?.text}</div>
 						)}
 					</Link>
 					<div className={"hidden md:block space-x-1"}>
 						{routes.map((route: any) => (
-							<Link key={route.name} href={route?.value}>
+							<Link key={route.name} href={`/${currentLocale}${route.value}`}>
 								<Button
-									variant={active == route.name ? "secondary" : "ghost"}
+									variant={active === route.name ? "secondary" : "ghost"}
 									className={"text-base"}
 								>
-									{route.name}
+									{t(route.name)}
 								</Button>
 							</Link>
 						))}
@@ -69,19 +85,19 @@ function Header() {
 								{routes.map((route: any, index: number) => (
 									<div className={"space-y-4"} key={route.name}>
 										<Link
-											href={route.value}
+											href={`/${currentLocale}${route.value}`}
 											onClick={() => {
 												setOpen(false);
 											}}
 										>
 											<Button
-												variant={active == route.name ? "secondary" : "ghost"}
+												variant={active === route.name ? "secondary" : "ghost"}
 												className={"text-base w-full"}
 											>
-												{route.name}
+												{t(route.name)}
 											</Button>
 										</Link>
-										{index != routes.length - 1 && <Separator />}
+										{index !== routes.length - 1 && <Separator />}
 									</div>
 								))}
 							</SheetContent>
@@ -96,12 +112,20 @@ function Header() {
 					<Button
 						size={"icon"}
 						variant={"ghost"}
+						onClick={switchLocale}
+						className="font-medium"
+					>
+						{currentLocale === 'en' ? 'VI' : 'EN'}
+					</Button>
+					<Button
+						size={"icon"}
+						variant={"ghost"}
 						onClick={() => {
-							setTheme(theme == "light" ? "dark" : "light");
+							setTheme(theme === "light" ? "dark" : "light");
 						}}
 					>
-						{theme == "light" && <Sun size={20} />}
-						{theme == "dark" && <Moon size={20} />}
+						{theme === "light" && <Sun size={20} />}
+						{theme === "dark" && <Moon size={20} />}
 					</Button>
 				</div>
 			</header>

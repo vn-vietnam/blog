@@ -1,0 +1,17 @@
+{
+	"Home": {
+		"title": "Blog của tôi"
+	},
+	"Header": {
+		"blog": "Nhật kí",
+		"tags": "Thẻ",
+		"projects": "Dự án",
+		"search": "Tìm kiếm"
+	},
+	"Footer": {
+		"subscribe": "Đăng ký",
+		"below subscribe": "Cập nhật các bản phát hành và tính năng mới, hướng dẫn và nghiên cứu điển hình.",
+		"subscribe button title": "Đăng ký qua email",
+		"subscribe btn": "Đăng ký"
+	}
+}

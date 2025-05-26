@@ -1,0 +1,17 @@
+{
+	"Home": {
+		"title": "My Blog"
+	},
+	"Header": {
+		"blog": "Blog",
+		"tags": "Tags",
+		"projects": "Projects",
+		"search": "Search"
+	},
+	"Footer": {
+		"subscribe": "Subscribe to the newsletter",
+		"below subscribe": "Stay updated on new releases and features, guides, and case studies.",
+		"subscribe button title": "Subscribe via email",
+		"subscribe btn": "Subscribe"
+	}
+}

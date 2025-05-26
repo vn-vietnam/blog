@@ -1,9 +1,6 @@
 'use client';
 
 import React from 'react';
-import { TableProperties } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
 import Time from '@/components/Time';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Suspense } from 'react';
@@ -45,21 +42,6 @@ export default function BlogPost({ post }: BlogPostProps) {
             <div className={'space-x-4'}>
               <SideNav/>
             </div>
-            <Drawer>
-              <DrawerTrigger>
-                <Button size={"icon"} variant={"ghost"}>
-                  <TableProperties size={20}/>
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>
-                    Table of contents
-                  </DrawerTitle>
-                </DrawerHeader>
-                <Toc toc={post?.toc}/>
-              </DrawerContent>
-            </Drawer>
           </div>
         </div>
 

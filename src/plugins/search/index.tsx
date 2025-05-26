@@ -5,11 +5,12 @@ import { SearchIcon } from "lucide-react";
 import { pluginConfig } from "@/config/blog.config";
 import { useEffect, useState } from "react";
 import Cmdk from "./Cmdk";
+import { useTranslations } from "next-intl";
 
 const SearchPlugin = () => {
 	const [open, setOpen] = useState(false);
 	const { engine } = pluginConfig.search;
-
+	const t = useTranslations("Header");
 	useEffect(() => {
 		const down = (e: KeyboardEvent) => {
 			if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -34,7 +35,7 @@ const SearchPlugin = () => {
 						setOpen(true);
 					}}
 				>
-					Search Blog...
+					{t("search")}
 					<div className={"p-1 flex justify-center items-center"}>
 						<Command size={16} />
 						<span className={"text-base"}>K</span>
