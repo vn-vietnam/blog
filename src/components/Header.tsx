@@ -15,6 +15,7 @@ import { Github } from "lucide-react";
 import { Separator } from "./ui/separator";
 import SearchPlugin from "@/plugins/search";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 function Header() {
 	const { routes, logo, githubRepo } = blogConfig;
@@ -48,8 +49,8 @@ function Header() {
 			<header className={"container flex justify-between py-4"}>
 				<div className={"flex justify-center items-center"}>
 					<Link className={"flex justify-center items-center mr-4"} href={`/${currentLocale}`}>
-						{logo?.text && (
-							<div className={"ml-1 text-lg font-semibold"}>{logo?.text}</div>
+						{logo?.image && (
+							<Image src={logo.image} alt={logo.text} width={50} height={50} />
 						)}
 					</Link>
 					<div className={"hidden md:block space-x-1"}>

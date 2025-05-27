@@ -5,7 +5,7 @@ const blogConfig: any = {
     // Logo
     logo: {
     
-        image: "/logo.png", //  the file path of the logo in the public directory
+        image: "/logo-blog.png", //  the file path of the logo in the public directory
         text: "NTKBlog", // null || text
         isHomeLink: true, // true | false
     },
