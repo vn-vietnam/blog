@@ -29,19 +29,19 @@
 		"description": "All of my projects",
 		"list": {
 			"1": {
-				"name": "Project 1",
-				"description": "Project 1 description",
+				"name": "Portfolio Simple Website",
+				"description": "Using NextJS 15, Tailwind, Shadcn",
 				"status": "active"
 			},
 			"2": {
-				"name": "Project 2",
-				"description": "Project 2 description",
-				"status": "dev"
+				"name": "Blog Website",
+				"description": "Using NextJS 15, Tailwind, Shadcn, MDX, Next-intl",
+				"status": "active"
 			},
 			"3": {
-				"name": "Project 3",
-				"description": "Project 3 description",
-				"status": "offline"
+				"name": "Saas Exam",
+				"description": "Using NextJS 15, Tailwind, Shadcn, NextAuth, Postgres",
+				"status": "dev"
 			}
 		}
 	},

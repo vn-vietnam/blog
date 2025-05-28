@@ -76,21 +76,23 @@ const blogConfig: any = {
             {
                 name: "list.1.name",
                 description: "list.1.description",
-                href: "",
-                github: "",
+                href: "http://porfolio-beta-lake.vercel.app",
+                github: "http://github.com/vn-vietnam/portfolio",
                 status: "list.1.status",
             },
             {
                 name: "list.2.name",
                 description: "list.2.description",
                 status: "list.2.status",
+                href: "http://blog-puce-one-75.vercel.app",
+                github: "http://github.com/vn-vietnam/blog",
             },
             {
                 name: "list.3.name",
                 description: "list.3.description",
                 status: "list.3.status",
-                href: "",
-                github: "",
+                href: "/",
+                github: "http://github.com/vn-vietnam/saas-exam",
             }
         ],
     },

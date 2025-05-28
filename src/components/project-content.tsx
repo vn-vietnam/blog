@@ -19,6 +19,7 @@ const ProjectContent = () => {
                 return (
                     <div className={'not-prose'} key={index}>
                         <div className={'flex items-center mb-2'}>
+                            
                             {project.href ?
                                 <Link href={project.href} className={'underline underline-offset-4'}>
                                     <CardTitle>

@@ -29,19 +29,19 @@
 		"description": "Tất cả các dự án của tôi",
 		"list": {
 			"1": {
-				"name": "Dự án 1",
-				"description": "Mô tả dự án 1",
+				"name": "Trang cá nhân đơn giản",
+				"description": "Sử dụng NextJS 15, Tailwind, Shadcn",
 				"status": "Hoạt động"
 			},
 			"2": {
-				"name": "Dự án 2",
-				"description": "Mô tả dự án 2",
-				"status": "Đang phát triển"
+				"name": "Trang Blog Cá nhân",
+				"description": "Sử dụng NextJS 15, Tailwind, Shadcn, MDX, Next-intl",
+				"status": "Hoạt động"
 			},
 			"3": {
-				"name": "Dự án 3",
-				"description": "Mô tả dự án 3",
-				"status": "Dừng hoạt động"
+				"name": "Hệ Thống Thi Tiếng Anh",
+				"description": "Sử dụng NextJS 15, Tailwind, Shadcn, NextAuth, Postgres",
+				"status": "Đang phát triển"
 			}
 		}
 	},
