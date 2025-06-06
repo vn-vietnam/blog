@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
+Title: "vn-vietnam/blog – Modern Blog with Dark Mode, next-intl, and SEO"
+Description: "A modern, customizable blog platform using Next.js, Tailwind CSS, Shadcn UI, MDX, and TypeScript. Supports dark/light mode, Vietnamese/English translations, and SEO best practices."
+---
 
-## Getting Started
+# 🌐 vn-vietnam/blog
 
-First, run the development server:
+Welcome to **vn-vietnam/blog** – a modern, fast, and SEO-friendly blog platform built with the latest web technologies. It’s designed for content creators, developers, and teams who want a beautiful, functional, and internationalized blog system.
+
+## ✨ Features
+
+✅ **Dark/Light Mode Support**  
+Switch seamlessly between light and dark themes for a better reading experience.
+
+✅ **Multilingual (vi/en)**  
+Supports both Vietnamese and English, enabling you to reach a wider audience.  
+
+✅ **Blog Pages in MDX**  
+Write your content in Markdown + JSX (MDX). Embed custom React components into your posts for richer, interactive content.  
+
+✅ **SEO Optimized**  
+Includes essential SEO features like meta tags, Open Graph support, structured data, and clean URLs for better search engine visibility.
+
+✅ **Powered by Modern Stack**  
+- **Next.js 15** for performance and flexibility  
+- **Tailwind CSS** for utility-first styling  
+- **Shadcn UI** for beautiful, accessible UI components  
+- **TypeScript** for robust, typed code  
+
+## 🏃‍♂️ Get Started
 
 ```bash
+git clone https://github.com/vn-vietnam/blog.git
+cd blog
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
