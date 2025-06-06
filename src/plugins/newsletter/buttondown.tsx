@@ -20,7 +20,7 @@ const ButtonDown = () => {
                     className={"w-72  mr-0 md:mr-4"}
                     type="email"
                     placeholder={t("subscribe button title")}
-                    name=" email"
+                    name="email"
                 />
                 <Button className={" w-full md:w-fit"} type="submit" value={t("subscribe btn")}>{t("subscribe btn")}</Button>
             </div>
